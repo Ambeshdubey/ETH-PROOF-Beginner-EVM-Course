@@ -17,33 +17,31 @@ To run the MyToken contract, you'll need to use Remix, an online Solidity IDE. F
 'solidity'
 
        // SPDX-License-Identifier: MIT
-       pragma solidity 0.8.18;
-
-       contract MyToken {
-       // Public variables to store token details
-       string public tokenName = "MyToken";
-       string public tokenAbbrv = "MTK";
-       uint256 public totalSupply;
-
-       // Mapping to store balances
-       mapping(address => uint256) public balances;
-
-       // Mint function to create new tokens
-       function mint(address _to, uint256 _value) public {
-        totalSupply += _value;
-        balances[_to] += _value;
-       }
-
-       // Burn function to destroy tokens
-       function burn(address _from, uint256 _value) public {
-        require(balances[_from] >= _value, "Insufficient balance to burn");
-        totalSupply -= _value;
-        balances[_from] -= _value;
-       }
-       }
+    pragma solidity 0.8.18;
 
 
 
+
+    contract MetaToken {
+       string public tokenName = "Meta";
+       string public tokenAbbreviation = "MTA";
+       uint public totalSupply = 0;
+
+       mapping(address => uint) public balances;
+
+       function mint(address _address, uint _value) public {
+          totalSupply += _value;
+          balances[_address] += _value;
+    }
+
+      function burn(address _address, uint _value) public {
+          if(balances[_address] >= _value) {
+              totalSupply -= _value;
+           balances[_address] -= _value;
+        }
+    }
+
+    }
    
 
 ### Executing Program
